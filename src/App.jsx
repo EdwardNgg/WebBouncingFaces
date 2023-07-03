@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import Context from './classes/Context';
+import Context from './Context';
 
 function App() {
   let context;
