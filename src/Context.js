@@ -23,8 +23,7 @@ class Context {
    * @param {GPUDevice} device - The interface for the logical GPU device
    *  associated with the adapter.
    * @throws {TypeError} - Indicates non-private access of the constructor.
-   * @private
-   * @constructor
+   * @hideconstructor
    */
   constructor(adapter, canvas, device) {
     if (!Context.#isInternalConstructing) {
