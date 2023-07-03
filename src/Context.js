@@ -1,4 +1,4 @@
-import Color from './Color';
+import Color from './model/attributes/Color';
 
 /**
  * The singleton Context holds the global elements to render an HTML canvas
@@ -24,7 +24,7 @@ class Context {
    *  associated with the adapter.
    * @throws {TypeError} - Indicates non-private access of the constructor.
    * @private
-   * @@constructor
+   * @constructor
    */
   constructor(adapter, canvas, device) {
     if (!Context.#isInternalConstructing) {
