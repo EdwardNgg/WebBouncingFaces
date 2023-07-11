@@ -1,4 +1,4 @@
-import Color from './model/attributes/Color';
+import Color from '../model/attributes/Color';
 
 /**
  * The singleton Context holds the global elements to render an HTML canvas
