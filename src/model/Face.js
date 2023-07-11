@@ -12,13 +12,13 @@ class Face {
 
     this.eyes = {
       left: new Circle(
-        this.head.center.x - (3 / 8) * this.radius,
+        this.head.center.x - (3 / 8) * this.head.radius,
         this.head.center.y,
         this.head.radius / 8,
         eyeMouthColor,
       ),
       right: new Circle(
-        this.head.center.x + (3 / 8) * this.radius,
+        this.head.center.x + (3 / 8) * this.head.radius,
         this.head.center.y,
         this.head.radius / 8,
         eyeMouthColor,

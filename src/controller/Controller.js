@@ -67,6 +67,15 @@ class Controller {
       this.view.isPaused = false;
     }, 250);
   }
+
+  /**
+   * Handles a canvas click event by creating a face in the application's model.
+   *
+   * @param {MouseEvent} event - The event when a mouse button is pressed.
+   */
+  handleClick(event) {
+    this.model.createFace(event.clientX, event.clientY);
+  }
 }
 
 export default Controller;

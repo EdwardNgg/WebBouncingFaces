@@ -22,6 +22,6 @@ fn main(
     props.radius * sin(theta),
   ) + props.center;
 
-  positions[2 * globalId.x] = vec2(0, 0);
+  positions[2 * globalId.x] = anglePosition;
   positions[2 * globalId.x + 1] = props.center;
 }

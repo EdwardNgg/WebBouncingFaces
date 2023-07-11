@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import Context from './Context';
+import Context from './global/Context';
 import Model from './model/Model';
 import View from './view/View';
 import Controller from './controller/Controller';
@@ -13,6 +13,12 @@ function App() {
   let controller;
 
   const canvasRef = useRef(null);
+
+  function handleClick(event) {
+    if (controller) {
+      controller.handleClick(event);
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -32,7 +38,7 @@ function App() {
   }, []);
 
   return (
-    <canvas id="gpu-canvas" ref={canvasRef} />
+    <canvas id="gpu-canvas" ref={canvasRef} onClick={handleClick} />
   );
 }
 
