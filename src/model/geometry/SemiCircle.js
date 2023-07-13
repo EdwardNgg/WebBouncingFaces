@@ -35,7 +35,7 @@ class SemiCircle extends Circle {
      *    center, color, radius, and angle of the semicircle.
      */
     this.props = new Float32Array([
-      ...this.center.value,
+      ...this.center.data,
       this.radius,
       this.angle,
     ]);

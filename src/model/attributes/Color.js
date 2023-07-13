@@ -42,12 +42,17 @@ class Color {
       a: alpha,
     };
     /**
-     * @prop {Float32Array} value - The float array values of the color in
+     * @prop {Float32Array} data - The float data values of the color in
      *    RGBA order.
      */
-    this.value = new Float32Array([
+    this.data = new Float32Array([
       this.rgba.r, this.rgba.g, this.rgba.b, this.rgba.a,
     ]);
+    /**
+     * @prop {GPUBuffer} colorBuffer - The GPU Buffer holding the RGBA values of
+     *    the color.
+     */
+    this.colorBuffer = undefined;
   }
 }
 

@@ -13,7 +13,7 @@ class Vector {
    * @constructor
    */
   constructor(x, y, z, h) {
-    const values = [x];
+    const data = [x];
 
     /** @prop {number} x  - The x-component of the vector. */
     this.x = x;
@@ -24,29 +24,29 @@ class Vector {
       this.size += 1;
       /** @prop {number} y - The y-component of the vector. */
       this.y = y;
-      values.push(y);
+      data.push(y);
     }
 
     if (z !== undefined) {
       this.size += 1;
       /** @prop {number} z - The z-component of the vector. */
       this.z = z;
-      values.push(z);
+      data.push(z);
     }
 
     if (h !== undefined) {
       this.size += 1;
       /** @prop {number} h - The h-component of the vector. */
       this.h = h;
-      values.push(h);
+      data.push(h);
     }
 
     /**
-     * @prop {Float32Array} value - The float array values of the vector in x,
+     * @prop {Float32Array} data - The float array data of the vector in x,
      *    y, z, h order. The number of elements matches the dimension/size of
      *    the vector.
      */
-    this.value = new Float32Array(values);
+    this.data = new Float32Array(data);
   }
 }
 

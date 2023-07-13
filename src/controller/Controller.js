@@ -57,6 +57,7 @@ class Controller {
   handleResize() {
     this.view.isPaused = true;
     this.view.resizeCanvas();
+    this.view.updateMultiSampleTexture();
 
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
@@ -74,7 +75,10 @@ class Controller {
    * @param {MouseEvent} event - The event when a mouse button is pressed.
    */
   handleClick(event) {
-    this.model.createFace(event.clientX, event.clientY);
+    this.model.createFace(
+      event.clientX * this.context.scale,
+      (window.innerHeight - event.clientY) * this.context.scale,
+    );
   }
 }
 

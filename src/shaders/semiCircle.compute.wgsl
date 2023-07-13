@@ -4,8 +4,8 @@ struct SemiCircleProps {
   phi: f32,
 };
 
-@group(0) @binding(0) var<uniform> props: SemiCircleProps;
-@group(0) @binding(1) var<storage, read_write> positions: array<vec2f>;
+@group(0) @binding(0) var<uniform> props : SemiCircleProps;
+@group(0) @binding(1) var<storage, read_write> positions : array<vec2f>;
 
 override workGroupSize : u32 = 16;
 const pi : f32 = 3.141592;
@@ -13,7 +13,7 @@ const pi : f32 = 3.141592;
 @compute @workgroup_size(workGroupSize)
 fn main(
   @builtin(global_invocation_id) globalId: vec3u,
-  @builtin(num_workgroups) numWorkGroups: vec3u
+  @builtin(num_workgroups) numWorkGroups: vec3u,
 ) {
   let u : f32 = f32(globalId.x) / f32(workGroupSize * numWorkGroups.x - 1);
   let theta : f32 = pi * u + radians(props.phi);

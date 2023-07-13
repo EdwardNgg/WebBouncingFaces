@@ -5,6 +5,8 @@ import Model from './model/Model';
 import View from './view/View';
 import Controller from './controller/Controller';
 
+import './styles/App.scss';
+
 function App() {
   let context;
 
@@ -38,7 +40,12 @@ function App() {
   }, []);
 
   return (
-    <canvas id="gpu-canvas" ref={canvasRef} onClick={handleClick} />
+    <canvas
+      className="App__canvas"
+      id="gpu-canvas"
+      ref={canvasRef}
+      onClick={handleClick}
+    />
   );
 }
 

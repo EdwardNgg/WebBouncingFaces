@@ -141,6 +141,7 @@ class Model {
     this.initFaceComputeBuffers(face);
     this.computeFaceVertices(face);
     this.faces.push(face);
+    this.view.renderFace(face);
   }
 
   /**

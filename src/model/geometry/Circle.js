@@ -6,6 +6,9 @@ import Vector from '../attributes/Vector';
  * vertices for rendering.
  */
 class Circle {
+  /** @prop {number} vertexArrayStride - The number of bytes per vertex. */
+  static vertexArrayStride = 2 * Float32Array.BYTES_PER_ELEMENT;
+
   /**
    * Creates a new circle with a specific center, radius, and color. Buffers
    * are not initialized.
@@ -38,7 +41,7 @@ class Circle {
      *    center and radius of the circle.
      */
     this.props = new Float32Array([
-      ...this.center.value,
+      ...this.center.data,
       this.radius,
     ]);
     /**
@@ -57,7 +60,7 @@ class Circle {
      * @prop {number} numDivisions - The number of discrete points to be
      *    rendered for the circle.
      */
-    this.numDivisions = 64;
+    this.numDivisions = 128;
     const pointsPerDivision = 2;
     const elementsPerPoint = 2;
 

@@ -1,3 +1,5 @@
+/* global GPUBufferUsage */
+import Calc from '../util/Calc';
 import Color from '../model/attributes/Color';
 
 /**
@@ -46,10 +48,18 @@ class Context {
      *    faces.
      */
     this.colors = {
+      antiFlashWhite: new Color('#EEEEEE'),
       moonstone: new Color('#5C9EAD'),
       paynesGray: new Color('#326273'),
       vanilla: new Color('#F5EE9E'),
     };
+    this.initColorBuffers();
+
+    /**
+     * @prop {number} scale - The global ratio of device pixels to one logical
+     *    pixel.
+     */
+    this.scale = window.devicePixelRatio || 1;
   }
 
   /**
@@ -76,6 +86,30 @@ class Context {
       Context.#instance = new Context(adapter, device);
     }
     return Context.#instance;
+  }
+
+  /**
+   * Initializes each color's uniform buffer for rendering.
+   */
+  initColorBuffers() {
+    for (
+      let i = 0, colors = Object.values(this.colors);
+      i < colors.length;
+      i += 1
+    ) {
+      colors[i].colorBuffer = this.device.createBuffer({
+        size: Calc.roundUp(16, colors[i].data.byteLength),
+        // eslint-disable-next-line no-bitwise
+        usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+      });
+      this.device.queue.writeBuffer(
+        colors[i].colorBuffer,
+        0,
+        colors[i].data,
+        0,
+        colors[i].data.length,
+      );
+    }
   }
 }
 
