@@ -7,6 +7,7 @@ import { createRequire } from 'module';
 
 dotenv.config();
 const dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const allowedHosts = process.env.ALLOWED_HOSTS || 'auto';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const mode = isDevelopment ? 'development' : 'production';
 const port = process.env.CLIENT_PORT || 3000;
@@ -70,9 +71,10 @@ export default {
     ],
   },
   devServer: {
-    static: path.resolve(dirname, 'public'),
-    port,
+    allowedHosts,
     hot: true,
+    port,
+    static: path.resolve(dirname, 'public'),
     server: 'https',
   },
   plugins: [

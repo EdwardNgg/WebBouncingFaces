@@ -26,7 +26,7 @@ class Circle {
      * @prop {Vector} center - The center location of the circle in pixels
      *    relative to the DOM.
      */
-    this.center = new Vector(centerX, centerY);
+    this.center = new Vector(2, [centerX, centerY]);
     /**
      * @prop {number} radius - The distance from the center to the edge of the
      * circle in pixels.
