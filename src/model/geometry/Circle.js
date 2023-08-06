@@ -1,4 +1,4 @@
-import Vector from '../attributes/Vector';
+import Vector from '../../lib/wgpu-math/Vector';
 
 /**
  * The Circle class represents a two-dimensional circle with a center location,
