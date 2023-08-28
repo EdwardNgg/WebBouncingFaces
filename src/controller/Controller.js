@@ -48,6 +48,7 @@ class Controller {
       this.startTime = timeStamp;
     }
     this.currentTime = timeStamp;
+    this.model.translateFaces(this.currentTime);
   }
 
   /**

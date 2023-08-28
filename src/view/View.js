@@ -115,6 +115,13 @@ class View {
         },
         {
           binding: 1,
+          visibility: GPUShaderStage.VERTEX,
+          buffer: {
+            type: 'uniform',
+          },
+        },
+        {
+          binding: 2,
           visibility: GPUShaderStage.FRAGMENT,
           buffer: {
             type: 'uniform',
@@ -258,6 +265,19 @@ class View {
    * @param {Face} face - The new face with initialized vertices to render.
    */
   renderFace(face) {
+    face.setTransformBuffer(this.context.device.createBuffer({
+      size: face.transform.data.byteLength,
+      // eslint-disable-next-line no-bitwise
+      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+    }));
+    this.context.device.queue.writeBuffer(
+      face.transformBuffer,
+      0,
+      face.transform.data,
+      0,
+      face.transform.data.length,
+    );
+
     for (
       let circles = face.getCircles(), circle = circles.next();
       !circle.done;
@@ -267,7 +287,8 @@ class View {
         layout: this.renderBindGroupLayout,
         entries: [
           { binding: 0, resource: { buffer: this.canvasBuffer } },
-          { binding: 1, resource: { buffer: circle.value.color.colorBuffer } },
+          { binding: 1, resource: { buffer: face.transformBuffer } },
+          { binding: 2, resource: { buffer: circle.value.color.colorBuffer } },
         ],
       });
     }

@@ -122,13 +122,13 @@ class Model {
    *     relative to the client DOM.
    * @param {number} positionY - The center y-location of the face relative to
    *    the client DOM.
-   * @param {number} [radius = 100] - The radius of the face.
-   * @param {number} [velocityX = 10] - The speed of the face in the
+   * @param {number} [radius = 200] - The radius of the face.
+   * @param {number} [velocityX = 100] - The speed of the face in the
    *    x-direction.
-   * @param {number} [velocityY = 10] - The speed of the face in the
+   * @param {number} [velocityY = 100] - The speed of the face in the
    *    y-direction.
    */
-  createFace(positionX, positionY, radius = 100, velocityX = 10, velocityY = 10) {
+  createFace(positionX, positionY, radius = 200, velocityX = 100, velocityY = 100) {
     const face = new Face(
       positionX,
       positionY,
@@ -219,6 +219,25 @@ class Model {
 
       this.context.device.queue.submit([commandEncoder.finish()]);
     }
+  }
+
+  /**
+   * Moves all the faces in the application based on each face's speed and the
+   * time that has elapsed.
+   *
+   * @param {DOMHighResTimeStamp} time - The current time relevant to the DOM.
+   */
+  translateFaces(time) {
+    this.faces.forEach((face) => {
+      face.translate(time);
+      this.context.device.queue.writeBuffer(
+        face.transformBuffer,
+        0,
+        face.transform.data,
+        0,
+        face.transform.data.length,
+      );
+    });
   }
 }
 
